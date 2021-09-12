@@ -1,0 +1,17 @@
+﻿@model GameService
+
+<div>
+    @if (Model.GameLost == false && !Model.GameQuestions.Any())
+    {
+        <h1>Congratulations! You are a Millionaire!</h1>
+        <h2>(before taxes)</h2>
+    }
+    else if (Model.GameLost == false && Model.GameQuestions.Any())
+    {
+        <h1>Well played! You have won @Model.CurrentPrize.ToString("C")</h1>
+    }
+    else
+    {
+        <h1>Unfortunately, it's a wrong answer. You have lost!</h1>
+    }
+</div>

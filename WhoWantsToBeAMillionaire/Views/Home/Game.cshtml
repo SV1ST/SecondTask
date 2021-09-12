@@ -1,0 +1,23 @@
+﻿@model GameService
+
+<div>
+    <h1 class="text-center">@Model.GameQuestions.Keys.FirstOrDefault().Content</h1>
+    <form asp-controller="Home" asp-action="Game" method="post">
+        @if (Model.FiftyFiftyUsed == false)
+        {
+            <button type="submit" name="fiftyFiftyUsed" value="true">50:50</button>
+        }
+    </form>
+    <form asp-controller="Home" asp-action="AnswerResult" method="post">
+        @for (int i = 0, marker = 'A'; i < 4; i++, marker++)
+        {
+            if (Model.CurrentAnswers[i] != null)
+            {
+                <button type="submit" name="answerIndex" value="@i">
+                    @((char)marker): @Model.CurrentAnswers[i].Content
+                </button>
+            }
+        }
+    </form>
+    <h3>Current Prize: @Model.CurrentPrize.ToString("C")</h3>
+</div>
